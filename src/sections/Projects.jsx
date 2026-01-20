@@ -1,5 +1,46 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { HeroParallax } from "@/components/ui/hero-parallax";
+
+const BentoTilt = ({ children, className }) => {
+  const itemRef = useRef(null);
+  const [transform, setTransform] = useState("");
+
+  const handleMouseMove = (e) => {
+    if (!itemRef.current) return;
+
+    const rect = itemRef.current.getBoundingClientRect();
+
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+
+    const tiltX = (0.5 - y) * 6;
+    const tiltY = (x - 0.5) * 6;
+
+    setTransform(
+      `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
+    );
+  };
+
+  const handleMouseLeave = () => {
+    setTransform(`perspective(800px) rotateX(0deg) rotateY(0deg)`);
+  };
+
+  return (
+    <div
+      ref={itemRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={className}
+      style={{
+        transform,
+        transition: "transform 0.2s ease-out",
+        transformStyle: "preserve-3d",
+      }}
+    >
+      {children}
+    </div>
+  );
+};
 
 const Projects = () => {
   const products = [
@@ -102,12 +143,40 @@ const Projects = () => {
     <section className="bg-white">
       <HeroParallax products={products} />
 
-      <div className="container mx-auto px-3 md:px-10">
-        <p className="font-semibold text-2xl ">Some of my recent work</p>
+      <div className="w-full h-full bg-gradient-to-b from-white via-black to-black">
+        <div className="container mx-auto px-3 md:px-10">
+        <p className="font-semibold text-4xl font-anton">Some of my recent work</p>
 
-        <div className="border relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
-          
+        <BentoTilt className="border relative mb-7 h-96 w-full bg-[#FA8112] overflow-hidden rounded-md md:h-[65vh] mt-10">
+          <h1 className="text-5xl font-anton p-2">Skivvy</h1>
+          <img
+            src="/Projects/Skivvy.png"
+            alt="skivvy"
+            className="size-3/4 absolute right-0 bottom-0 rounded-lg shadow-2xl border-2 border-orange-400"
+          />
+        </BentoTilt>
+
+        {/* IF ADDING THE ADDITIONAL TWO CARDS 
+        
+        1. h-[135vh]
+        2. grid-rows-3 
+        3. overflow-hidden can be removed*/}
+
+        <div className="grid h-[100vh] grid-cols-2 grid-rows-2 gap-7 overflow-hidden">
+          <BentoTilt className="relative col-span-2 overflow-hidden rounded-md transition-transform duration-300 ease-out row-span-1 md:col-span-1 md:row-span-2 bg-[#0C2C55] border">
+            <img src="/Projects/Schedulify2.png" alt="parallax" className="absolute md:left-20 md:top-50 top-10 shadow-2xl rounded-lg "/>
+          </BentoTilt>
+
+          <BentoTilt className="relative col-span-2 overflow-hidden rounded-md transition-transform duration-300 ease-out border-hsla row-span-1 ms-32 md:col-span-1 md:ms-0 bg-[#005461] border">
+            <img src="/Projects/Parallax.png" alt="schedulify" className="absolute md:top-25 md:right-12 rounded-lg shadow-2xl bottom-2"/>
+          </BentoTilt>
+
+          <BentoTilt className="relative col-span-2 overflow-hidden rounded-md transition-transform duration-300 ease-out me-14 md:col-span-1 md:me-0 border-hsla bg-green-300 border">
+            <img src="/Projects/Deploy.png" alt="deploy" className="absolute right-20 rounded-lg shadow-2xl"/>
+          </BentoTilt>
         </div>
+      </div>
+
       </div>
     </section>
   );
