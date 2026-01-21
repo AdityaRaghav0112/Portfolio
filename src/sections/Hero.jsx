@@ -36,8 +36,8 @@ const Hero = () => {
       >
         {/* INTRODUCTION */}
         <div className="h-full gap-2 flex flex-col justify-center">
-          <h1 className="text-white text-5xl mb-20 font-anton">
-            Hi, this is Aditya Raghav
+          <h1 className="text-white text-7xl mb-20 font-anton">
+            Hi, <br />This is Aditya Raghav
           </h1>
           <div className="flex gap-4 items-center text-white">
             <LayoutTextFlip
@@ -49,19 +49,17 @@ const Hero = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
             dolorem repudiandae, voluptates incidunt beatae dolore, ex et atque
             rem perspiciatis ut ipsam doloremque eaque distinctio accusantium
-            adipisci accusamus nesciunt cumque labore exercitationem asperiores
-            a, aspernatur explicabo. Nam sint iure accusamus dolores et quidem
-            est facilis, itaque atque amet. Saepe, iste!
+            adipisci accusamus nesciunt 
           </p>
         </div>
 
-        <h1 className="font-anton absolute bottom-5 right-5 z-40 text-9xl text-white">
-          Welcome
+        <h1 className="font-anton uppercase absolute bottom-5 right-5 z-40 text-9xl text-white">
+          Building.
         </h1>
       </div>
 
-      <h1 className="font-anton absolute bottom-5 right-5 z-10 text-9xl font-bold text-black">
-        Welcome
+      <h1 className="font-anton uppercase absolute bottom-5 right-5 z-10 text-9xl font-bold text-black">
+        Building.
       </h1>
     </section>
   );

@@ -140,19 +140,19 @@ const Projects = () => {
   ];
 
   return (
-    <section className="bg-white">
+    <section className="bg-black">
       <HeroParallax products={products} />
 
-      <div className="w-full h-full bg-gradient-to-b from-white via-black to-black">
+      <div className="w-full h-full">
         <div className="container mx-auto px-3 md:px-10">
-        <p className="font-semibold text-4xl font-anton">Some of my recent work</p>
+        <p className="font-semibold text-4xl font-anton text-white">Some of my recent work</p>
 
         <BentoTilt className="border relative mb-7 h-96 w-full bg-[#FA8112] overflow-hidden rounded-md md:h-[65vh] mt-10">
           <h1 className="text-5xl font-anton p-2">Skivvy</h1>
           <img
             src="/Projects/Skivvy.png"
             alt="skivvy"
-            className="size-3/4 absolute right-0 bottom-0 rounded-lg shadow-2xl border-2 border-orange-400"
+            className="absolute right-0 top-30 rounded-lg shadow-2xl border-2 border-orange-400"
           />
         </BentoTilt>
 
@@ -162,17 +162,20 @@ const Projects = () => {
         2. grid-rows-3 
         3. overflow-hidden can be removed*/}
 
-        <div className="grid h-[100vh] grid-cols-2 grid-rows-2 gap-7 overflow-hidden">
+        <div className="grid h-[135vh] grid-cols-2 grid-rows-3 gap-7 overflow-hidden">
           <BentoTilt className="relative col-span-2 overflow-hidden rounded-md transition-transform duration-300 ease-out row-span-1 md:col-span-1 md:row-span-2 bg-[#0C2C55] border">
-            <img src="/Projects/Schedulify2.png" alt="parallax" className="absolute md:left-20 md:top-50 top-10 shadow-2xl rounded-lg "/>
+            <h1 className="font-anton p-2 text-5xl">Schedulify</h1>
+            <img src="/Projects/Schedulify2.png" alt="parallax" className="absolute md:left-20 md:top-50 top-30 shadow-2xl rounded-lg"/>
           </BentoTilt>
 
           <BentoTilt className="relative col-span-2 overflow-hidden rounded-md transition-transform duration-300 ease-out border-hsla row-span-1 ms-32 md:col-span-1 md:ms-0 bg-[#005461] border">
-            <img src="/Projects/Parallax.png" alt="schedulify" className="absolute md:top-25 md:right-12 rounded-lg shadow-2xl bottom-2"/>
+            <h1 className="font-anton text-5xl p-2">Parallax</h1>
+            <img src="/Projects/Parallax.png" alt="schedulify" className="absolute md:top-25 md:right-12 rounded-lg shadow-2xl bottom-0"/>
           </BentoTilt>
 
           <BentoTilt className="relative col-span-2 overflow-hidden rounded-md transition-transform duration-300 ease-out me-14 md:col-span-1 md:me-0 border-hsla bg-green-300 border">
-            <img src="/Projects/Deploy.png" alt="deploy" className="absolute right-20 rounded-lg shadow-2xl"/>
+            <h1 className="font-anton text-5xl p-2">Deploy</h1>
+            <img src="/Projects/Deploy.png" alt="deploy" className="absolute rounded-lg shadow-2xl top-40"/>
           </BentoTilt>
         </div>
       </div>
