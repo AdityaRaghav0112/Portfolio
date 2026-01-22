@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className='min-h-screen w-full overflow-x-hidden relative'>
       <Hero/>
-      <About/>
+      {/* <About/> */}
       <Projects/>
     </div>
   )
