@@ -1,29 +1,73 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ProjectCard2 = ({ title, desc, img }) => {
   return (
-    <div className="h-dvh w-full flex flex-col items-center mt-20">
-      <div className="h-[60%] w-[70%] bg-black rounded-4xl flex text-white overflow-hidden">
+    <div className="w-full flex flex-col items-center py-20">
+      <div
+        className="
+    min-h-[60vh] 
+    w-[70%] 
+    bg-black 
+    rounded-4xl 
+    flex 
+    text-white 
+    overflow-hidden
+
+    max-lg:w-[90%]
+-   max-md:flex-col
++   max-md:flex-col-reverse
+  "
+      >
         {/* TEXT */}
-        <div className="border-r-4 border-white w-[60%] h-full p-8 flex flex-col justify-between">
+        <div
+          className="
+            border-r-4 border-white 
+            w-[60%] 
+            p-8 
+            flex flex-col justify-between
+
+            max-md:w-full
+            max-md:border-r-0
+            max-md:border-b-4
+          "
+        >
           <div>
-            <h1 className="font-anton text-5xl">{title}</h1>
-            <ul className="list-disc pl-5 mt-4 text-gray-300 text-lg">
+            <h1 className="font-anton text-5xl max-sm:text-4xl">{title}</h1>
+
+            <ul className="list-disc pl-5 mt-4 text-gray-300 text-lg max-sm:text-base">
               {desc}
             </ul>
           </div>
 
-          <div>
-            <p className="text-4xl font-anton">Tech Stack</p>
-          </div>
+          <p className="text-4xl font-anton max-sm:text-3xl">Tech Stack</p>
         </div>
 
         {/* IMAGE */}
-        <div className="w-[40%] h-full">
+        <div
+          className="
+            w-[40%] 
+            min-h-[60vh] 
+            relative 
+            overflow-hidden
+
+            max-md:w-full 
+            max-md:min-h-[40vh]
+          "
+        >
           <img
             src={img}
-            alt="Skivvy project preview"
-            className="w-full h-full object-cover"
+            alt="Project preview"
+            className="
+              absolute inset-0
+              w-full h-full
+              object-cover object-center
+              select-none
+            "
           />
         </div>
       </div>
@@ -78,31 +122,78 @@ const ProjectCard = () => {
 
 const Projects = () => {
   return (
-    <section
-      id="projects"
-      className="w-full h-dvh flex flex-col items-center mt-40"
-    >
-      <h1 className="text-5xl font-anton">Featured Projects</h1>
-      <ProjectCard2
-        title={"Skivvy - A skill sharing platform"}
-        desc={
-          <>
-            <li>
-              Developed a peer-to-peer skill sharing platform enabeling users to
-              match based on skills preferencies.
-            </li>
-            <li>
-              Implemented a recommendation algorithm improving a match accuracy
-              by 30%.
-            </li>
-            <li>
-              Built a responsive UI using Tailwind and shadcn, achieving a load
-              time under 1.2 seconds.
-            </li>
-          </>
-        }
-        img="/Projects/Skivvy.png"
-      />
+    <section id="projects" className="w-full flex flex-col items-center pt-40">
+      <h1 className="text-5xl font-anton mb-20">Featured Projects</h1>
+
+      <div className="w-full relative">
+        <div className="project-card">
+          <ProjectCard2
+            title={"Skivvy - A skill sharing platform"}
+            desc={
+              <>
+                <li>
+                  Developed a peer-to-peer skill sharing platform enabling users
+                  to match based on skill preferences.
+                </li>
+                <li>
+                  Implemented a recommendation algorithm improving match
+                  accuracy by 30%.
+                </li>
+                <li>
+                  Built a responsive UI using Tailwind and shadcn, achieving a
+                  load time under 1.2 seconds.
+                </li>
+              </>
+            }
+            img="/Projects/Skivvy.png"
+          />
+        </div>
+
+        <div className="project-card">
+          <ProjectCard2
+            title={"Schedulify - CPU shceduling algorithm's visualizer"}
+            desc={
+              <>
+                <li>
+                  Developed a peer-to-peer skill sharing platform enabling users
+                  to match based on skill preferences.
+                </li>
+                <li>
+                  Implemented a recommendation algorithm improving match
+                  accuracy by 30%.
+                </li>
+                <li>
+                  Built a responsive UI using Tailwind and shadcn, achieving a
+                  load time under 1.2 seconds.
+                </li>
+              </>
+            }
+            img="/Projects/Schedulify.png"
+          />
+        </div>
+        <div className="project-card">
+          <ProjectCard2
+            title={"Parallax - A UI responsive UI component"}
+            desc={
+              <>
+                <li>
+                  Developed a peer-to-peer skill sharing platform enabling users
+                  to match based on skill preferences.
+                </li>
+                <li>
+                  Implemented a recommendation algorithm improving match
+                  accuracy by 30%.
+                </li>
+                <li>
+                  Built a responsive UI using Tailwind and shadcn, achieving a
+                  load time under 1.2 seconds.
+                </li>
+              </>
+            }
+            img="/Projects/Parallax.png"
+          />
+        </div>
+      </div>
     </section>
   );
 };
