@@ -36,8 +36,8 @@ const Hero = () => {
       >
         {/* INTRODUCTION */}
         <div className="h-full gap-2 flex flex-col justify-center">
-          <h1 className="text-white text-7xl font-anton">
-            Hi, <br />This is Aditya Raghav
+          <h1 className="text-white text-[10rem] font-anton">
+            Aditya Raghav
           </h1>
           {/* <div className="flex gap-4 items-center text-white">
             <LayoutTextFlip
@@ -45,7 +45,7 @@ const Hero = () => {
               words={["web developer", "student", "tech enthusiast", "gamer"]}
             />
           </div> */}
-          <p className="max-w-xl text-lg text-gray-400">
+          <p className="max-w-4xl font-inter text-xl text-gray-300 leading-normal">
             Final year B.Tech CSE student with hands-on experience in <span className="text-white ">ReactJS, NextJS, NodeJS, ExpressJS, JavaScript(Es6+), TypeScript</span>. Built performance optimized, responsive web and interactive applications. Seeking a Full-Stack/Frontend role. 
           </p>
         </div>
