@@ -23,6 +23,12 @@
     border-radius: 1.5rem;
   }
 
+  .about-subtext {
+    @apply absolute bottom-[-80dvh] left-1/2 w-full max-w-96
+      -translate-x-1/2 text-center text-lg md:max-w-[34rem];
+    font-family: var(--font-circular-web);
+  }
+
   @media (min-width: 768px) {
     .about-image {
       width: 30vw;

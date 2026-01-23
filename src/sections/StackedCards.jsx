@@ -9,18 +9,18 @@ const cards = [
     title: "Skivvy - A skill sharing platform",
     desc: ["Developed a peer-to-peer skill sharing platform enabeling users to match based on skill preferences", "Implemented a recommendation algorithm improving match accuracy by 30%", "Built a responsive UI using Tailwind and shadcn, achieving a load time under 1.2 seconds"],
     img: "/Projects/Skivvy.png",
-    bg: "bg-black",
-  },
-  {
-    title: "Schedulify - CPU Scheduling algorithm's visualizer",
-    desc: ["Webflow build", "CMS setup", "SEO"],
-    img: "/img2.png",
     bg: "bg-[#222222]",
   },
   {
-    title: "UI Concept - Yellow",
-    desc: ["Figma design", "Design system", "UI exploration"],
-    img: "/img3.png",
+    title: "Schedulify - CPU Scheduling algorithm's visualizer",
+    desc: ["Developed an interactive visualization tool explaining CPU scheduling algorithms.", "Implemented a dynamic UI using React.js, Tailwind, Framer Motion and modular component architecture.", "Implemented algorithm animations and optimized rendering for smooth performance. "],
+    img: "/Projects/Schedulify.png",
+    bg: "bg-[#0E2744]",
+  },
+  {
+    title: "Deploy - browser based 3D game",
+    desc: ["Built a browser based 3D game inspired by a popular game ‘Dispatch’ using Next.js and Three.js.", "Developed interactive hero dispatch mechanics with real-time 3D rendering and animations."],
+    img: "/Projects/Deploy.png",
     bg: "bg-yellow-500",
   },
 ];
@@ -36,7 +36,7 @@ const StackedCards = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 90",
+        start: "top 50",
         end: `+=${panels.length * 60}%`,
         scrub: 0.2,
         pin: true,
@@ -58,9 +58,9 @@ const StackedCards = () => {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-[100vh] bg-white flex justify-center">
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center">
-        <h1 className="absolute top-0 font-anton text-5xl">Featured Work</h1>
+      className="relative min-h-[100vh] bg-black flex justify-center overflow-hidden">
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center mt-10">
+        <h1 className="absolute text-white top-0 font-anton text-5xl">Featured Work</h1>
         <div className="relative w-[90%] h-[80%] rounded-3xl overflow-hidden">
           {cards.map((card, i) => (
             <div
@@ -70,7 +70,7 @@ const StackedCards = () => {
             >
               <div className="min-h-full w-full rounded-4xl flex text-white overflow-hidden max-lg:w-[90%] max-md:flex-col-reverse">
                 {/* TEXT */}
-                <div className=" border-r-4 border-white w-[55%] p-8 flex flex-col justify-between max-md:w-full max-md:border-r-0 max-md:border-b-4 ">
+                <div className=" border-r-5 border-black w-[55%] p-8 flex flex-col justify-between max-md:w-full max-md:border-r-0 max-md:border-b-4 ">
                   <div>
                     <h1 className="font-anton text-5xl max-sm:text-4xl">
                       {card.title}
@@ -93,7 +93,7 @@ const StackedCards = () => {
                   <img
                     src={card.img}
                     alt="Project preview"
-                    className="absolute inset-0 w-full h-full object-cover object-center select-none "/>
+                    className="absolute inset-0 w-full h-full object-cover object-right select-none "/>
                 </div>
               </div>
             </div>
