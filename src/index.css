@@ -2,9 +2,16 @@
 
 @theme {
   --font-anton: "Anton", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  
+  --font-family-anton: var(--font-anton);
+  --font-family-inter: var(--font-inter);
 }
 
 @layer utilities {
+  .font-inter {
+    font-family: var(--font-inter);
+  }
 
   .mask-clip-path {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);

@@ -31,7 +31,7 @@ const About = () => {
         <h1 className="text-center font-anton text-5xl md:text-7xl mt-44 uppercase">
           about me
         </h1>
-        <p className="flex-center text-xl  max-w-full flex-wrap gap-2 px-10 md:gap-3">
+        <p className="flex-center text-xl font-inter max-w-full flex-wrap gap-2 px-10 md:gap-3">
           Lorem ipsum dolor sit amet <br /> consectetur adipisicing <br /> elit.
           Harum, unde.
         </p>
@@ -48,8 +48,9 @@ const About = () => {
       </div>
 
       <div className="min-h-screen w-full">
-        <h1 className="text-center">dnksndksa</h1>
-
+        <h1 className="text-xl font-inter tracking-[-0.04em] leading-[0.95]">
+          Your Name inter
+        </h1>
       </div>
     </div>
   );
