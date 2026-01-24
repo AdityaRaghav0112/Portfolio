@@ -147,7 +147,7 @@ const ProjectCard = ({ title, desc, img }) => {
 
 const Projects = () => {
   return (
-    <section id="projects" className="w-full flex flex-col items-center pt-40">
+    <section className="w-full flex flex-col items-center pt-40">
       <h1 className="text-5xl font-anton mb-20">Featured Projects</h1>
 
       <div className="w-full relative">
