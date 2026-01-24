@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 @theme {
   --font-anton: "Anton", sans-serif;
   --font-inter: "Inter", sans-serif;
@@ -120,7 +129,7 @@
     top: 50%;
     z-index: 20;
     height: 60vh;
-    width: 90vw;
+    width: 90%;
     max-width: 380px;
     transform: translate(-50%, -50%);
     overflow: hidden;
@@ -135,7 +144,7 @@
 
   @media (min-width: 768px) {
     .about-image {
-      width: 30vw;
+      width: 30%;
       max-width: none;
     }
   }

@@ -21,14 +21,14 @@ const About = () => {
     });
 
     clipAnimation.to(".mask-clip-path", {
-      width: "100vw",
+      width: "100%",
       height: "100vh",
       borderRadius: 0,
     });
   });
 
   return (
-    <div id="about" className="min-h-screen w-screen overflow-x-hidden">
+    <div id="about" className="min-h-screen w-full overflow-hidden">
       {/* HEADING */}
       <div className="relative flex flex-col items-center gap-5 px-4">
         <h1
@@ -42,7 +42,7 @@ const About = () => {
       </div>
 
       {/* CLIP SECTION */}
-      <div id="clip" className="relative h-dvh w-screen overflow-hidden">
+      <div id="clip" className="relative h-dvh w-full overflow-hidden">
         <div className="mask-clip-path about-image h-full w-full">
           <img
             src="/Projects/Parallax.png"
@@ -53,27 +53,27 @@ const About = () => {
       </div>
 
       {/* CONTENT */}
-      <div className="min-h-screen w-full bg-black">
+      <div className="min-h-screen w-full bg-black overflow-hidden">
         <div
           className="flex flex-col md:flex-row justify-center gap-6
-                     pt-20 md:pt-30 px-4 md:px-0"
+                     pt-20 md:pt-30 px-4 md:px-8 lg:px-10 max-w-[1600px] mx-auto"
         >
           {/* LEFT LABEL */}
-          <div className="md:h-50 md:w-[20%] md:mt-10">
+          <div className="md:h-50 md:w-[20%] md:mt-10 flex-shrink-0">
             <h1
               className="font-inter text-white font-bold uppercase
                          text-sm sm:text-base md:text-xl
-                         md:text-end px-5"
+                         md:text-end px-2 md:px-5"
             >
               about me
             </h1>
           </div>
 
           {/* DIVIDER */}
-          <div className="hidden md:block bg-gray-300 rounded-2xl h-[70vh] w-1" />
+          <div className="hidden md:block bg-gray-300 rounded-2xl h-[70vh] w-1 flex-shrink-0" />
 
           {/* RIGHT CONTENT */}
-          <div className="text-white md:h-50 md:w-[60%] px-2 md:px-5">
+          <div className="text-white md:w-[60%] px-2 md:px-5 max-w-full">
             <TextType
               text={["Web Developer", "Engineering Student", "Tech Enthusiast"]}
               typingSpeed={85}
@@ -86,8 +86,8 @@ const About = () => {
               variableSpeedMax={120}
               cursorBlinkDuration={0.5}
               className="ibm-plex-mono-regular
-                         text-3xl sm:text-4xl md:text-6xl lg:text-[6rem]
-                         leading-tight"
+                         text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl
+                         leading-tight break-words"
             />
 
             <p
