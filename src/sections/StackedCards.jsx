@@ -92,7 +92,7 @@ const StackedCards = () => {
               >
                 {/* TEXT */}
                 <div
-                  className="border-black w-full md:w-[55%] 
+                  className="w-full md:w-[55%] 
                              p-4 sm:p-6 md:p-8 flex flex-col justify-between
                              md:border-r-4 border-b-4 md:border-b-0
                              order-2 md:order-1"
