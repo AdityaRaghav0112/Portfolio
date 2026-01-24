@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import TextType from "@/components/TextType";
+import { ArrowDown } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,11 +56,7 @@ const About = () => {
           <div className="bg-gray-300 rounded-2xl h-[80vh] w-1" />
           <div className="text-white h-50 w-[60%] px-5">
             <TextType
-              text={[
-                "Web Developer",
-                "Engineering Student",
-                "Tech Enthusiast",
-              ]}
+              text={["Web Developer", "Engineering Student", "Tech Enthusiast"]}
               typingSpeed={85}
               pauseDuration={1500}
               showCursor
@@ -72,7 +69,31 @@ const About = () => {
               className="text-[6rem] ibm-plex-mono-regular"
             />
 
-            <p className="font-inter text-xl leading-loose">👋 I am Aditya Raghav - CSE student and a full stack developer. born and raised in Ajmer/Rajasthan, currently living in Gurgaon/Haryana</p>
+            <p className="font-inter text-xl leading-loose flex flex-col gap-15 items-start">
+              <span>
+                👋 I am Aditya Raghav - CSE student and a full stack developer.
+                born and raised in Ajmer/Rajasthan, currently living in
+                Gurgaon/Haryana. Currently I'm pursuing my B.Tech from
+                Dronacharya College of Engineering(DCE),Gurgaon. I love playing
+                video games, watching anime, and building visually appealing
+                websites in my free time. <br />
+              </span>
+              <span>
+                I like working on accross the entire stack - shaping clean
+                interfaces on the frontend while building solid, scalable logic
+                on the backend. I'm driven by curiosity and learning through
+                building - experimenting with new tools, refining my code and
+                constantly improving how things look, feel, and perform. Whether
+                it's crafting smooth UI or structuring efficient systems behind
+                the scenes.
+              </span>
+              <button className="bg-white mt-30 text-black font-inter font-semibold relative w-56 h-12 rounded-xl overflow-hidden group cursor-pointer">
+                <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-full">
+                  Download Resume
+                </span>
+                <span className="absolute inset-0 flex items-center justify-center translate-y-full transition-transform duration-300 group-hover:translate-y-0"><ArrowDown/></span>
+              </button>
+            </p>
           </div>
         </div>
       </div>

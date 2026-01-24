@@ -58,7 +58,7 @@ const StackedCards = () => {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-[100vh] bg-white flex justify-center overflow-hidden">
+      className="relative min-h-screen bg-white flex justify-center overflow-hidden">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center mt-10">
         <h1 className="absolute text-black top-0 font-anton text-5xl">Featured Work</h1>
         <div className="relative w-[90%] h-[80%] rounded-3xl overflow-hidden">
