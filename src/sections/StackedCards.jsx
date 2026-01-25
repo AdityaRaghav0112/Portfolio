@@ -49,7 +49,7 @@ const StackedCards = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 50",
+        start: "top 10",
         end: `+=${panels.length * 60}%`,
         scrub: 0.5,
         pin: true,

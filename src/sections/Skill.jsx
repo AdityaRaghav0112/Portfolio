@@ -82,7 +82,7 @@ const cardVariants = {
 
 const Skill = () => {
   return (
-    <section className="w-full min-h-[80vh] bg-black flex items-center justify-center py-16">
+    <section className="w-full min-h-[50vh] bg-white flex items-center justify-center py-16">
       <div className="w-full max-w-6xl px-4 sm:px-6">
         {/* Heading */}
         <motion.h1
@@ -90,7 +90,7 @@ const Skill = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-white text-3xl sm:text-4xl md:text-5xl font-semibold"
+          className="text-black text-3xl sm:text-4xl md:text-5xl font-semibold"
         >
           Current technologies
         </motion.h1>
@@ -100,7 +100,7 @@ const Skill = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true }}
-          className="text-gray-400 text-base sm:text-lg mt-3 max-w-2xl"
+          className="text-gray-600 text-base sm:text-lg mt-3 max-w-2xl"
         >
           I'm proficient in a range of modern technologies that empower me to
           build highly functional solutions. These are some of my main
@@ -130,7 +130,7 @@ const Skill = () => {
               className="
                 group
                 relative
-                bg-[#1c1c1c]
+                dark:bg-[#1c1c1c]
                 border border-white/5
                 rounded-xl
                 px-3 py-4 sm:px-4 sm:py-5
