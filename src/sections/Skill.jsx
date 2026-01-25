@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import {
   FaReact,
   FaHtml5,
@@ -66,43 +66,86 @@ const tools = [
 
 const SkillGroup = ({ title, items }) => {
   return (
-    <div className="bg-[#1a1a1a] rounded-2xl p-6 space-y-6">
-      <h2 className="text-white font-inter uppercase tracking-wide text-sm">
+    <BentoTilt className="bg-[#1a1a1a] rounded-2xl p-5 space-y-5">
+      <h2 className="text-white font-inter uppercase tracking-wide text-xs">
         {title}
       </h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-4">
         {items.map((item) => (
           <div
             key={item.id}
-            className="flex flex-col items-center gap-2 p-4 rounded-xl
-                       bg-black/40 hover:bg-black/70 transition group"
+            className="flex flex-col items-center gap-1.5
+                       p-3 sm:p-3.5
+                       rounded-lg
+                       bg-black/40 hover:bg-black/70
+                       transition group"
           >
             <div
-              className="text-4xl sm:text-5xl transition-transform
-                         group-hover:scale-110"
+              className="text-3xl sm:text-4xl
+                         transition-transform
+                         group-hover:scale-105"
               style={{ color: item.color }}
             >
               {item.icon}
             </div>
 
-            <span className="text-xs sm:text-sm text-gray-300 font-inter text-center">
+            <span className="text-[11px] sm:text-xs text-gray-300 font-inter text-center">
               {item.skill}
             </span>
           </div>
         ))}
       </div>
-    </div>
+    </BentoTilt>
   );
 };
 
+const BentoTilt = ({children, className}) => {
+  const itemRef = useRef(null);
+  const [transform, setTransform] = useState("");
+
+  const handleMouseMove = (e) => {
+    if (!itemRef.current) return;
+
+    const rect = itemRef.current.getBoundingClientRect();
+
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+
+    const tiltX = (0.5 - y) * 6;
+    const tiltY = (x - 0.5) * 6;
+
+    setTransform(`perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`);
+  }
+
+  const handleMouseLeave = () => {
+    setTransform(`perspective(800px) rotateX(0deg) rotateY(0deg)`);
+  };
+
+  return (
+    <div
+      ref={itemRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={className}
+      style={{
+        transform,
+        transition: "transform 0.2s ease-out",
+        transformStyle: "preserve-3d",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 const Skill = () => {
   return (
-    <div className="min-h-screen w-full bg-black flex items-center justify-center">
+    <div className="min-h-screen w-full bg-black flex items-center justify-center ">
       <div className="w-full max-w-7xl px-6 md:px-12">
         <div className="flex flex-col-reverse md:flex-row gap-10">
           {/* LEFT SECTION – SKILLS */}
-          <div className="space-y-8 w-full md:w-[65%] lg:w-[70%] xl:w-[75%] ">
+          <div className="space-y-8 w-full md:w-[65%] lg:w-[70%] xl:w-[75%] overflow-hidden">
             <SkillGroup title="Frontend" items={frontend} />
             <SkillGroup title="Backend" items={backend} />
             <SkillGroup title="Databases" items={databases} />
