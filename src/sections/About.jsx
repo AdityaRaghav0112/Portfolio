@@ -42,7 +42,7 @@ const About = () => {
       </div>
 
       {/* CLIP SECTION */}
-      <div id="clip" className="relative h-dvh w-full overflow-hidden">
+      <div id="clip" className="relative h-dvh w-screen overflow-hidden">
         <div className="mask-clip-path about-image h-full w-full">
           <img
             src="/Projects/Parallax.png"

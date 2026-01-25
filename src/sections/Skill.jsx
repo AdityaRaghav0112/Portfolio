@@ -1,171 +1,184 @@
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import {
   FaReact,
-  FaHtml5,
-  FaCss3,
   FaNodeJs,
-  FaGit,
+  FaGitAlt,
   FaGithub,
+  FaFigma,
 } from "react-icons/fa";
-import {
-  RiNextjsFill,
-  RiTailwindCssFill,
-  RiJavascriptFill,
-} from "react-icons/ri";
-import { BiLogoTypescript } from "react-icons/bi";
-import { TbBrandThreejs } from "react-icons/tb";
-import {
-  SiExpress,
-  SiJsonwebtokens,
-  SiMysql,
-  SiMongodb,
-  SiVercel,
-  SiNetlify,
-  SiRender,
-} from "react-icons/si";
+import { SiTypescript, SiTailwindcss, SiNextdotjs } from "react-icons/si";
 
-/* ================= DATA ================= */
-
-const frontend = [
-  { id: 1, skill: "ReactJS", icon: <FaReact />, color: "#61DAFB" },
-  { id: 2, skill: "NextJS", icon: <RiNextjsFill />, color: "#ffffff" },
+const skills = [
   {
-    id: 3,
-    skill: "Tailwind CSS",
-    icon: <RiTailwindCssFill />,
-    color: "#38BDF8",
+    name: "Figma",
+    desc: "Design Tool",
+    icon: <FaFigma className="w-6 h-6 text-pink-400" />,
+    color: "#2A1F2D",
   },
-  { id: 4, skill: "JavaScript", icon: <RiJavascriptFill />, color: "#F7DF1E" },
-  { id: 5, skill: "TypeScript", icon: <BiLogoTypescript />, color: "#3178C6" },
-  { id: 6, skill: "ThreeJS", icon: <TbBrandThreejs />, color: "#ffffff" },
-  { id: 7, skill: "HTML5", icon: <FaHtml5 />, color: "#E34F26" },
-  { id: 8, skill: "CSS3", icon: <FaCss3 />, color: "#1572B6" },
+  {
+    name: "TypeScript",
+    desc: "JavaScript but better",
+    icon: <SiTypescript className="w-6 h-6 text-blue-400" />,
+    color: "#1E2A38",
+  },
+  {
+    name: "React",
+    desc: "JavaScript Library",
+    icon: <FaReact className="w-6 h-6 text-cyan-400" />,
+    color: "#1E2C30",
+  },
+  {
+    name: "NextJS",
+    desc: "React framework",
+    icon: <SiNextdotjs className="w-6 h-6 text-white" />,
+    color: "#1A1A1A",
+  },
+  {
+    name: "Tailwind",
+    desc: "CSS framework",
+    icon: <SiTailwindcss className="w-6 h-6 text-sky-400" />,
+    color: "#1E293B",
+  },
+  {
+    name: "Git",
+    desc: "Version control",
+    icon: <FaGitAlt className="w-6 h-6 text-orange-400" />,
+    color: "#2D1E1A",
+  },
+  {
+    name: "GitHub",
+    desc: "Code hosting",
+    icon: <FaGithub className="w-6 h-6 text-white" />,
+    color: "#1F1F1F",
+  },
+  {
+    name: "NodeJS",
+    desc: "Backend runtime",
+    icon: <FaNodeJs className="w-6 h-6 text-green-400" />,
+    color: "#1E2A22",
+  },
 ];
 
-const backend = [
-  { id: 1, skill: "NodeJS", icon: <FaNodeJs />, color: "#3C873A" },
-  { id: 2, skill: "ExpressJS", icon: <SiExpress />, color: "#ffffff" },
-  { id: 3, skill: "REST API", icon: <SiExpress />, color: "#888888" },
-  { id: 4, skill: "JWT Auth", icon: <SiJsonwebtokens />, color: "#D63AFF" },
-];
-
-const databases = [
-  { id: 1, skill: "MySQL", icon: <SiMysql />, color: "#00758F" },
-  { id: 2, skill: "MongoDB", icon: <SiMongodb />, color: "#47A248" },
-];
-
-const tools = [
-  { id: 1, skill: "Git", icon: <FaGit />, color: "#F05032" },
-  { id: 2, skill: "GitHub", icon: <FaGithub />, color: "#ffffff" },
-  { id: 3, skill: "Vercel", icon: <SiVercel />, color: "#ffffff" },
-  { id: 4, skill: "Netlify", icon: <SiNetlify />, color: "#00C7B7" },
-  { id: 5, skill: "Render", icon: <SiRender />, color: "#46E3B7" },
-];
-
-/* ================= UI ================= */
-
-const SkillGroup = ({ title, items }) => {
-  return (
-    <BentoTilt className="bg-[#1a1a1a] rounded-2xl p-5 space-y-5">
-      <h2 className="text-white font-inter uppercase tracking-wide text-xs">
-        {title}
-      </h2>
-
-      <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-4">
-        {items.map((item) => (
-          <div
-            key={item.id}
-            className="flex flex-col items-center gap-1.5
-                       p-3 sm:p-3.5
-                       rounded-lg
-                       bg-black/40 hover:bg-black/70
-                       transition group"
-          >
-            <div
-              className="text-3xl sm:text-4xl
-                         transition-transform
-                         group-hover:scale-105"
-              style={{ color: item.color }}
-            >
-              {item.icon}
-            </div>
-
-            <span className="text-[11px] sm:text-xs text-gray-300 font-inter text-center">
-              {item.skill}
-            </span>
-          </div>
-        ))}
-      </div>
-    </BentoTilt>
-  );
+/* Animations */
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
 };
 
-const BentoTilt = ({children, className}) => {
-  const itemRef = useRef(null);
-  const [transform, setTransform] = useState("");
-
-  const handleMouseMove = (e) => {
-    if (!itemRef.current) return;
-
-    const rect = itemRef.current.getBoundingClientRect();
-
-    const x = (e.clientX - rect.left) / rect.width;
-    const y = (e.clientY - rect.top) / rect.height;
-
-    const tiltX = (0.5 - y) * 6;
-    const tiltY = (x - 0.5) * 6;
-
-    setTransform(`perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`);
-  }
-
-  const handleMouseLeave = () => {
-    setTransform(`perspective(800px) rotateX(0deg) rotateY(0deg)`);
-  };
-
-  return (
-    <div
-      ref={itemRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={className}
-      style={{
-        transform,
-        transition: "transform 0.2s ease-out",
-        transformStyle: "preserve-3d",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
 
 const Skill = () => {
   return (
-    <div className="min-h-screen w-full bg-black flex items-center justify-center ">
-      <div className="w-full max-w-7xl px-6 md:px-12">
-        <div className="flex flex-col-reverse md:flex-row gap-10">
-          {/* LEFT SECTION – SKILLS */}
-          <div className="space-y-8 w-full md:w-[65%] lg:w-[70%] xl:w-[75%] overflow-hidden">
-            <SkillGroup title="Frontend" items={frontend} />
-            <SkillGroup title="Backend" items={backend} />
-            <SkillGroup title="Databases" items={databases} />
-            <SkillGroup title="Tools & Platforms" items={tools} />
-          </div>
+    <section className="w-full min-h-[80vh] bg-black flex items-center justify-center py-16">
+      <div className="w-full max-w-6xl px-4 sm:px-6">
+        {/* Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-white text-3xl sm:text-4xl md:text-5xl font-semibold"
+        >
+          Current technologies
+        </motion.h1>
 
-          {/* DIVIDER */}
-          <div className="hidden md:flex">
-            <div className="w-[2px] bg-white rounded-full" />
-          </div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="text-gray-400 text-base sm:text-lg mt-3 max-w-2xl"
+        >
+          I'm proficient in a range of modern technologies that empower me to
+          build highly functional solutions. These are some of my main
+          technologies.
+        </motion.p>
 
-          {/* RIGHT SECTION – TITLE */}
-          <div className="flex-1 flex items-start">
-            <h1 className="text-white uppercase font-semibold font-inter text-xl mt-4">
-              My Arsenal
-            </h1>
-          </div>
-        </div>
+        {/* Cards */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="
+            grid 
+            grid-cols-2 
+            sm:grid-cols-2 
+            md:grid-cols-3 
+            lg:grid-cols-4 
+            gap-3 sm:gap-5 
+            mt-8 sm:mt-12
+          "
+        >
+          {skills.map((skill, index) => (
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              className="
+                group
+                relative
+                bg-[#1c1c1c]
+                border border-white/5
+                rounded-xl
+                px-3 py-4 sm:px-4 sm:py-5
+                flex items-center gap-3 sm:gap-4
+                cursor-pointer
+                transition-all
+                hover:scale-[1.03]
+              "
+            >
+              {/* Glow Effect */}
+              <div
+                className="
+                  absolute inset-0 rounded-xl opacity-0 
+                  group-hover:opacity-100 
+                  transition duration-300
+                "
+                style={{
+                  boxShadow: "0 0 25px rgba(255,255,255,0.08)",
+                }}
+              />
+
+              {/* Icon */}
+              <div
+                className="
+                  relative z-10
+                  w-10 h-10 sm:w-12 sm:h-12 
+                  rounded-lg 
+                  flex items-center justify-center
+                "
+                style={{ backgroundColor: skill.color }}
+              >
+                {skill.icon}
+              </div>
+
+              {/* Text */}
+              <div className="relative z-10">
+                <h3 className="text-white text-sm sm:text-base font-medium leading-tight">
+                  {skill.name}
+                </h3>
+                <p className="text-[11px] sm:text-sm text-gray-400">
+                  {skill.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -63,7 +63,7 @@ const StackedCards = () => {
         panel,
         { yPercent: 100 },
         { yPercent: 0, ease: "none" },
-        i - 0.5
+        i - 0.5,
       );
     });
   }, []);
@@ -84,60 +84,60 @@ const StackedCards = () => {
       </h1>
 
       {/* ================= MOBILE HORIZONTAL SCROLL ================= */}
-<div className="md:hidden relative h-screen">
+      <div className="md:hidden relative h-screen">
+        {/* Title */}
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10">
+          {/* <h1 className="font-anton text-black text-2xl">Featured Work</h1> */}
+        </div>
 
-  {/* Title */}
-  <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10">
-    <h1 className="font-anton text-black text-2xl">
-      Featured Work
-    </h1>
-  </div>
-
-  {/* Cards */}
-  <div className="flex gap-4 overflow-x-auto px-4 pt-16
-                  h-full snap-x snap-mandatory">
-    {cards.map((card, i) => (
-      <div
-        key={i}
-        className={`snap-center shrink-0
+        {/* Cards */}
+        <div
+          className="flex gap-4 overflow-x-auto px-4 pt-16
+                  h-full snap-x snap-mandatory"
+        >
+          {cards.map((card, i) => (
+            <div
+              key={i}
+              className={`snap-center shrink-0
                     w-[88vw] h-[70vh]
                     rounded-2xl ${card.bg}
                     text-white overflow-hidden`}
-      >
-        <div className="h-[40%] relative">
-          <img
-            src={card.img}
-            alt={card.title}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+            >
+              <div className="h-[40%] relative">
+                <img
+                  src={card.img}
+                  alt={card.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+
+              <div className="h-[60%] p-4 flex flex-col justify-between">
+                <div>
+                  <h2 className="font-anton text-xl leading-tight">
+                    {card.title}
+                  </h2>
+
+                  <ul className="list-disc pl-4 mt-3 text-sm text-gray-300 space-y-1">
+                    {card.desc.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <p className="font-anton text-lg">Tech Stack</p>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div className="h-[60%] p-4 flex flex-col justify-between">
-          <div>
-            <h2 className="font-anton text-xl leading-tight">
-              {card.title}
-            </h2>
-
-            <ul className="list-disc pl-4 mt-3 text-sm text-gray-300 space-y-1">
-              {card.desc.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <p className="font-anton text-lg">Tech Stack</p>
-        </div>
+        {/* Swipe hint */}
+        <p
+          className="absolute bottom-5 left-1/2 -translate-x-1/2
+                text-xs text-gray-500"
+        >
+          Swipe →
+        </p>
       </div>
-    ))}
-  </div>
-
-  {/* Swipe hint */}
-  <p className="absolute bottom-3 left-1/2 -translate-x-1/2
-                text-xs text-gray-500">
-    Swipe →
-  </p>
-</div>
-
 
       {/* ================= DESKTOP STACKED CARDS ================= */}
       <div className="hidden md:flex h-screen items-center justify-center px-2">
