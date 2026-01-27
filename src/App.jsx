@@ -7,6 +7,7 @@ import Contact from './sections/Contact.jsx'
 import Navbar from './components/Navbar.jsx'
 import Skills from './sections/Skills.jsx'
 import Skill from './sections/Skill.jsx'
+import About2 from './sections/About2.jsx'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <StackedCards/>
       <Skill/>
       <About/>
+      <About2/>
       {/* <Skills/> */}
       <Contact/>
     </div>
