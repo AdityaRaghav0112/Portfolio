@@ -123,23 +123,16 @@ html, body {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 
-  .about-image {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    z-index: 20;
-    height: 60vh;
-    width: 90%;
-    max-width: 380px;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
-    border-radius: 1.5rem;
+  .about-subtext {
+    @apply absolute bottom-[-80dvh] left-1/2 w-full max-w-96 -translate-x-1/2 text-center font-semibold text-lg md:max-w-[34rem];
   }
 
-  .about-subtext {
-    @apply absolute bottom-[-80dvh] left-1/2 w-full max-w-96
-      -translate-x-1/2 text-center text-lg md:max-w-[34rem];
-    font-family: var(--font-circular-web);
+  .about-image {
+    @apply absolute left-1/2 top-0 z-20 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[30vw];
+  }
+
+  .animated-title {
+    @apply flex flex-col gap-1 text-7xl uppercase leading-[.8] text-white sm:px-32 md:text-[6rem];
   }
 
   @media (min-width: 768px) {

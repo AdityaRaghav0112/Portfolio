@@ -8,50 +8,43 @@ import { ArrowDown } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-  useGSAP(() => {
-    const clipAnimation = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#clip",
-        start: "center center",
-        end: "+=800 center",
-        scrub: 0.5,
-        pin: true,
-        pinSpacing: true,
-      },
-    });
+  useGSAP(()=> {
+        const clipAnimation = gsap.timeline({
+            scrollTrigger:{
+                trigger: '#clip',
+                start: 'center center',
+                end: '+=800 center',
+                scrub: 0.5,
+                pin: true,
+                pinSpacing: true,
+            }
+        })
 
-    clipAnimation.to(".mask-clip-path", {
-      width: "100%",
-      height: "100vh",
-      borderRadius: 0,
-    });
-  });
+        clipAnimation.to('.mask-clip-path', {
+            width: '100vw',
+            height: '100vh',
+            borderRadius: 0,
+        })
+    })
 
   return (
-    <div id="about" className="min-h-screen w-full overflow-hidden">
-      {/* HEADING */}
-      <div className="relative flex flex-col items-center gap-5 px-4">
-        <h1
-          className="text-center font-anton uppercase max-w-7xl
-                     text-3xl sm:text-4xl md:text-6xl lg:text-7xl
-                     mt-32 md:mt-44"
-        >
-          Exploring the space where logic, creativity, and curiosity come
-          together
-        </h1>
-      </div>
+    <div id="about" className="min-h-screen w-screen">
+      <div className="relative mb-8 mt-36 flex flex-col items-center gap-5">
+        <h2 className="font-general text-sm md:text-[10px] uppercase ">welcome to deploy</h2>
 
-      {/* CLIP SECTION */}
-      <div id="clip" className="relative h-dvh w-screen overflow-hidden">
-        <div className="mask-clip-path about-image h-full w-full">
-          <img
-            src="/Projects/Parallax.png"
-            alt="Background"
-            className="h-full w-full object-cover"
-          />
+        <h1 className="font-bold text-4xl font-inter">Exploring the space</h1>
+
+        <div className="about-subtext ">
+            <p>The game of games begins-your life, now an epic MMORPG </p>
+            <p>deploy unites every player from countless games and platforms</p>
         </div>
       </div>
-      
+
+      <div className="h-dvh w-screen" id="clip">
+        <div className="mask-clip-path about-image">
+            <img src="/Projects/Parallax.png" alt="Background" className="absolute left-0 top-0 size-full object-cover"/>
+        </div>
+      </div>
     </div>
   );
 };

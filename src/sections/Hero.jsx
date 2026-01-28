@@ -23,7 +23,7 @@ const Hero = () => {
         trigger: "#foreground",
         start: "center center",
         end: "bottom center",
-        scrub: 0.8,
+        scrub: 0.2,
       },
     });
   });
