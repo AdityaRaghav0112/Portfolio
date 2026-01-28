@@ -82,7 +82,7 @@ const cardVariants = {
 
 const Skill = () => {
   return (
-    <section className="w-full min-h-[50vh] bg-white flex items-center justify-center py-16">
+    <section id="skills" className="w-full min-h-[50vh] bg-white flex items-center justify-center py-16">
       <div className="w-full max-w-6xl px-4 sm:px-6">
         {/* Heading */}
         <motion.h1

@@ -8,9 +8,8 @@ const Contact = () => {
       {/* MAIN SECTION */}
       <div
         id="contact"
-        className="w-full min-h-[70vh] flex justify-center items-center p-4 bg-black text-white"
+        className="w-full min-h-[60vh] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-[#222222] p-5 text-white"
       >
-        <div className="w-full min-h-[60vh] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-[#222222] p-5 rounded-2xl">
           {/* COLUMN 1 */}
           <div className="border-b md:border-b-0 md:border-r border-black pr-4">
             <h1 className="font-inter uppercase text-sm text-gray-400">
@@ -93,7 +92,6 @@ const Contact = () => {
               Glad you scrolled this far 🫠
             </h1>
           </div>
-        </div>
       </div>
 
       {/* FULLSCREEN RESUME MODAL */}

@@ -2,19 +2,21 @@ import React, { useEffect, useRef, useState } from "react";
 import { useWindowScroll } from "react-use";
 import gsap from "gsap";
 
-const navItems = ["Projects", "About", "XP", "Contact"];
+const navItems = ["Projects", "Skills", "About", "Contact"];
 
 const Navbar = () => {
-  const navContainerRef = useRef(null);
-  const audioElementRef = useRef(null);
+  const[openResume, setOpenResume] = useState(false);
 
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [isIndicatorActive, setIsIndicatorActive] = useState(false);
+  const navContainerRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isNavVisible, setIsNavVisible] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { y: currentScrollY } = useWindowScroll();
 
+  /* Hide / Show navbar on scroll */
   useEffect(() => {
     if (!navContainerRef.current) return;
 
@@ -24,7 +26,7 @@ const Navbar = () => {
     } else if (currentScrollY > lastScrollY) {
       setIsNavVisible(false);
       navContainerRef.current.classList.add("floating-nav");
-    } else if (currentScrollY < lastScrollY) {
+    } else {
       setIsNavVisible(true);
       navContainerRef.current.classList.add("floating-nav");
     }
@@ -32,98 +34,119 @@ const Navbar = () => {
     setLastScrollY(currentScrollY);
   }, [currentScrollY]);
 
+  /* Navbar animation */
   useEffect(() => {
-    if (!navContainerRef.current) return;
-
     gsap.to(navContainerRef.current, {
       y: isNavVisible ? 0 : -100,
       opacity: isNavVisible ? 1 : 0,
-      duration: 0.2,
+      duration: 0.25,
       ease: "power2.out",
     });
   }, [isNavVisible]);
 
-  const toggleAudioIndicator = () => {
-    setIsAudioPlaying((prev) => !prev);
-    setIsIndicatorActive((prev) => !prev);
-  };
-
+  /* Mobile menu bounce animation */
   useEffect(() => {
-    if (!audioElementRef.current) return;
+    if (!mobileMenuRef.current) return;
 
-    if (isAudioPlaying) {
-      audioElementRef.current.play();
-    } else {
-      audioElementRef.current.pause();
-    }
-  }, [isAudioPlaying]);
+    gsap.to(mobileMenuRef.current, {
+      y: isMenuOpen ? 0 : -20,
+      opacity: isMenuOpen ? 1 : 0,
+      scale: isMenuOpen ? 1 : 0.95,
+      duration: 0.4,
+      ease: "elastic.out(1, 0.6)",
+      pointerEvents: isMenuOpen ? "auto" : "none",
+    });
+  }, [isMenuOpen]);
 
   return (
+    <>
     <div
       ref={navContainerRef}
-      className="fixed inset-x-0 top-4 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6"
+      className="fixed inset-x-4 top-4 z-50 h-16 transition-all rounded-lg"
     >
-      <header className="absolute top-1/2 w-full -translate-y-1/2">
-        <nav className="flex size-full items-center justify-between p-4">
-          {/* LEFT */}
-          <div className="flex items-center gap-7">
-            <img src="/img/logo.png" alt="logo" className="w-10" />
+      <nav className="flex h-full items-center justify-between rounded-lg bg-black px-4">
+        {/* LEFT */}
+        <button onClick={() => setOpenResume(true)} className="relative px-6 py-2 bg-white text-black font-semibold rounded-full overflow-hidden group border-2 border-white">
+          <span className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-200" />
+          <span className="relative z-10 group-hover:text-white transition-colors duration-200">
+            Resume
+          </span>
+        </button>
 
-            {/* <button
-              className="group relative z-10 hidden w-fit cursor-pointer items-center gap-1 overflow-hidden rounded-full bg-blue-50 px-7 py-3 text-black md:flex"
+        
+
+        {/* DESKTOP NAV */}
+        <div className="hidden md:flex items-center">
+          {navItems.map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="nav-hover-btn"
             >
-              <span className="relative overflow-hidden font-inter font-semibold text-xs uppercase">
-                Resume
-              </span>
-              //NAVIGATION
-            </button> */}
+              {item}
+            </a>
+          ))}
+        </div>
 
-            <button className="relative px-6 py-2 bg-white border-2 border-white text-black font-semibold rounded-full overflow-hidden group cursor-pointer">
-                <span className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-200 z-0"></span>
-                <span className="relative z-10 group-hover:text-white transition-colors duration-200">Resume</span>
-            </button>
-          </div>
+        {/* MOBILE HAMBURGER */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden flex flex-col justify-center gap-1"
+        >
+          <span className={`hamburger ${isMenuOpen && "open"}`} />
+          <span className={`hamburger ${isMenuOpen && "open"}`} />
+          <span className={`hamburger ${isMenuOpen && "open"}`} />
+        </button>
+      </nav>
 
-          {/* RIGHT */}
-          <div className="flex h-full items-center">
-            <div className="hidden md:block">
-              {navItems.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="nav-hover-btn font-semibold"
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-
-            {/* AUDIO INDICATOR */}
-            {/* <button
-              onClick={toggleAudioIndicator}
-              className="ml-10 flex cursor-pointer items-center space-x-0.5"
-            >
-              <audio
-                ref={audioElementRef}
-                className="hidden"
-                src="/audio/loop.mp3"
-                loop
-              />
-
-              {[1, 2, 3, 4].map((bar) => (
-                <div
-                  key={bar}
-                  className={`indicator-line ${
-                    isIndicatorActive ? "active" : ""
-                  }`}
-                  style={{ animationDelay: `${bar * 0.1}s` }}
-                />
-              ))}
-            </button> */}
-          </div>
-        </nav>
-      </header>
+      {/* MOBILE MENU */}
+      <div
+        ref={mobileMenuRef}
+        className="absolute top-20 left-0 right-0 mx-2 rounded-xl bg-black py-6 opacity-0"
+      >
+        {navItems.map((item) => (
+          <a
+            key={item}
+            href={`#${item.toLowerCase()}`}
+            onClick={() => setIsMenuOpen(false)}
+            className="block px-6 py-3 text-center text-white text-lg"
+          >
+            {item}
+          </a>
+        ))}
+      </div>
     </div>
+
+    {openResume && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md p-4 "
+          onClick={() => setOpenResume(false)} // 👈 click outside closes
+        >
+          <div
+            className="relative max-w-4xl w-full"
+            onClick={(e) => e.stopPropagation()} // 👈 prevent close on image click
+          >
+            <button
+              onClick={() => setOpenResume(false)}
+              className="absolute -top-10 right-0 text-sm uppercase tracking-wider text-white group"
+            >
+              <span className="block duration-200 group-hover:hidden">
+                Click anywhere to close ✖
+              </span>
+              <span className="hidden duration-200 group-hover:block opacity-80">
+                You still decided to click here 😑
+              </span>
+            </button>
+
+            <iframe
+              src="/Aditya_Fullstack.pdf"
+              title="Resume PDF"
+              className="w-full h-[80vh] rounded-xl bg-black"
+            ></iframe>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

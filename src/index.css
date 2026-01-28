@@ -107,17 +107,33 @@ html, body {
   }
 
   .nav-hover-btn {
-    @apply relative ms-10 uppercase text-blue-50 cursor-pointer
-      after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full
-      after:origin-bottom-right after:scale-x-0 after:bg-neutral-800
-      after:transition-transform after:duration-300
-      hover:after:origin-bottom-left hover:after:scale-x-100
-      dark:after:bg-white;
-  }
+  @apply relative ms-10 uppercase text-white cursor-pointer
+    after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full
+    after:origin-bottom-right after:scale-x-0 after:bg-white font-semibold
+    after:transition-transform after:duration-300
+    hover:after:origin-bottom-left hover:after:scale-x-100;
+}
 
-  .floating-nav {
-    @apply bg-black rounded-lg border;
-  }
+.floating-nav {
+  @apply backdrop-blur-md bg-black/80 border border-white/10;
+}
+
+.hamburger {
+  @apply h-[2px] w-6 bg-white transition-all duration-300;
+}
+
+.hamburger.open:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.hamburger.open:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
 
   .mask-clip-path {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
