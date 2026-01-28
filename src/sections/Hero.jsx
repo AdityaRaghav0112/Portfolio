@@ -3,6 +3,7 @@ import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { MapPin } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,7 +45,7 @@ const Hero = () => {
         "
       >
         {/* INTRO */}
-        <div className="h-full flex flex-col justify-center gap-4">
+        <div className="h-full flex flex-col justify-center items-start gap-4">
           <h1
             className="
               text-white font-anton leading-none
@@ -67,6 +68,31 @@ const Hero = () => {
             />
           </div>
           */}
+
+          <div className="flex items-center gap-2">
+            <button className="relative px-4 py-3 rounded-full overflow-hidden">
+              <img
+                src="/location.jpg"
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover opacity-40"
+              />
+
+              <span className="flex items-center gap-1 relative z-10 text-white font-bold">
+                <MapPin /> Gurgaon, Haryana, India
+              </span>
+            </button>
+
+            <button className="relative overflow-hidden text-white font-bold px-4 py-3 rounded-full  border-2 flex items-center justify-center gap-2 group ">
+              {/* EXPANDING DOT */}
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full  bg-green-500 transition-all duration-200 ease-out group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:top-0 group-hover:translate-y-0 group-hover:rounded-full z-0 "/>
+
+              {/* CONTENT */}
+              <span className="relative z-10 flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-green-500 opacity-0" />
+                <span>Open to work</span>
+              </span>
+            </button>
+          </div>
 
           <p
             className="
