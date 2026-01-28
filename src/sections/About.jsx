@@ -30,13 +30,13 @@ const About = () => {
   return (
     <div id="about" className="min-h-screen w-screen">
       <div className="relative mb-8 mt-36 flex flex-col items-center gap-5">
-        <h2 className="font-general text-sm md:text-[10px] uppercase ">welcome to deploy</h2>
+        {/* <h2 className="font-general text-sm md:text-[10px] uppercase ">welcome to deploy</h2> */}
 
-        <h1 className="font-bold text-4xl font-inter">Exploring the space</h1>
+        <h1 className="text-5xl font-anton">About Me</h1>
 
         <div className="about-subtext ">
-            <p>The game of games begins-your life, now an epic MMORPG </p>
-            <p>deploy unites every player from countless games and platforms</p>
+            <p>Exploring the space</p>
+            <p>where creativity and curiosity comes together.</p>
         </div>
       </div>
 
