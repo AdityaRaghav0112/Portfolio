@@ -33,43 +33,34 @@ const Hero = () => {
     <section
       id="home"
       ref={heroRef}
-      className="relative h-dvh w-full overflow-hidden"
+      className="relative min-h-screen w-full overflow-hidden"
     >
       {/* FOREGROUND */}
       <div
         id="foreground"
         className="
-          relative z-40 h-dvh w-full overflow-hidden bg-black 
-          px-6 py-8 sm:px-10 sm:py-10 
-          rounded-lg
-        "
+      relative z-40 min-h-screen w-full overflow-hidden bg-black
+      px-5 py-8 sm:px-10 sm:py-10
+      rounded-none sm:rounded-lg
+    "
       >
         {/* INTRO */}
-        <div className="h-full flex flex-col justify-center items-start gap-4">
+        <div className="h-full flex flex-col justify-center items-start gap-4 md:mt-50 mt-[58vh]">
           <h1
             className="
-              text-white font-anton leading-none
-              text-[3.2rem]
-              sm:text-[4.5rem]
-              md:text-[6rem]
-              lg:text-[8rem]
-              xl:text-[10rem]
-            "
+          text-white font-anton leading-none
+          text-[2.8rem]
+          sm:text-[4.5rem]
+          md:text-[6rem]
+          lg:text-[8rem]
+          xl:text-[10rem]
+        "
           >
             Aditya Raghav
           </h1>
 
-          {/* TEXT FLIP (optional) */}
-          {/* 
-          <div className="flex gap-4 items-center text-white text-base sm:text-lg">
-            <LayoutTextFlip
-              text="I'm a"
-              words={["web developer", "student", "tech enthusiast", "gamer"]}
-            />
-          </div>
-          */}
-
-          <div className="flex items-center gap-2">
+          {/* BUTTONS */}
+          <div className="flex flex-wrap items-center gap-3">
             <button className="relative px-4 py-3 rounded-full overflow-hidden">
               <img
                 src="/location.jpg"
@@ -77,30 +68,44 @@ const Hero = () => {
                 className="absolute inset-0 w-full h-full object-cover opacity-40"
               />
 
-              <span className="flex items-center gap-1 relative z-10 text-white font-bold">
-                <MapPin /> Gurgaon, Haryana, India
+              <span className="flex items-center gap-1 relative z-10 text-white font-bold text-sm sm:text-base">
+                <MapPin className="w-4 h-4" />
+                Gurgaon, Haryana, India
               </span>
             </button>
 
-            <button className="relative overflow-hidden text-white font-bold px-4 py-3 rounded-full  border-2 flex items-center justify-center gap-2 group ">
+            <button className="relative overflow-hidden text-white font-bold px-4 py-3 rounded-full border-2 flex items-center justify-center gap-2 group">
               {/* EXPANDING DOT */}
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full  bg-green-500 transition-all duration-200 ease-out group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:top-0 group-hover:translate-y-0 group-hover:rounded-full z-0 "/>
+              <span
+                className="
+            absolute left-3 top-1/2 -translate-y-1/2
+            w-3 h-3 rounded-full bg-green-500
+            transition-all duration-300 ease-out
+            group-hover:w-full
+            group-hover:h-full
+            group-hover:left-0
+            group-hover:top-0
+            group-hover:translate-y-0
+            z-0
+          "
+              />
 
               {/* CONTENT */}
               <span className="relative z-10 flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-green-500 opacity-0" />
-                <span>Open to work</span>
+                <span className="text-sm sm:text-base">Open to work</span>
               </span>
             </button>
           </div>
 
+          {/* DESCRIPTION */}
           <p
             className="
-              max-w-4xl font-inter text-gray-300 leading-relaxed
-              text-base
-              sm:text-lg
-              md:text-xl
-            "
+          max-w-4xl font-inter text-gray-300 leading-relaxed
+          text-sm
+          sm:text-lg
+          md:text-xl
+        "
           >
             Final year B.Tech CSE student with hands-on experience in{" "}
             <span className="text-white">
@@ -114,30 +119,30 @@ const Hero = () => {
         {/* FOREGROUND TEXT */}
         <h1
           className="
-            font-anton uppercase absolute z-40 text-white leading-none
-            bottom-4 right-4
-            text-[2.5rem]
-            sm:text-[3.5rem]
-            md:text-[5rem]
-            lg:text-[7rem]
-            xl:text-[9rem]
-          "
+        font-anton uppercase absolute z-40 text-white leading-none
+        bottom-4 right-4 pointer-events-none
+        text-[1.8rem]
+        sm:text-[3.5rem]
+        md:text-[5rem]
+        lg:text-[7rem]
+        xl:text-[9rem]
+      "
         >
           Think. <br /> Build. <br /> Deploy.
         </h1>
       </div>
 
-      {/* BACKGROUND TEXT */}
+      {/* BACKGROUND TEXT (DESKTOP ONLY) */}
       <h1
         className="
-          font-anton uppercase absolute z-10 font-bold text-black leading-none
-          bottom-4 right-4
-          text-[2.5rem]
-          sm:text-[3.5rem]
-          md:text-[5rem]
-          lg:text-[7rem]
-          xl:text-[9rem]
-        "
+      hidden sm:block
+      font-anton uppercase absolute z-10 font-bold text-black leading-none
+      bottom-4 right-4 pointer-events-none
+      text-[3.5rem]
+      md:text-[5rem]
+      lg:text-[7rem]
+      xl:text-[9rem]
+    "
       >
         Think. <br /> Build. <br /> Deploy.
       </h1>
