@@ -2,6 +2,16 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { FaReact, FaNodeJs } from "react-icons/fa";
+import {
+  SiMongodb,
+  SiTypescript,
+  SiTailwindcss,
+  SiExpress,
+} from "react-icons/si";
+import { RiNextjsFill } from "react-icons/ri";
+import { TbBrandThreejs } from "react-icons/tb";
+import { ExternalLink, Github } from "lucide-react";
 
 const cards = [
   {
@@ -13,6 +23,14 @@ const cards = [
     ],
     img: "/Projects/Skivvy.png",
     bg: "bg-[#222222]",
+    tech: [
+      { Icon: FaReact, name: "React", bg: "#61DBFB" },
+      { Icon: FaNodeJs, name: "Node.js", bg: "#339933" },
+      { Icon: SiMongodb, name: "MongoDB", bg: "#47A248" },
+      { Icon: SiTypescript, name: "TypeScript", bg: "#3178C6" },
+    ],
+    link: "https://skivvy.vercel.app/",
+    git: "https://github.com/Abhaynegi1/Skivvy",
   },
   {
     title: "Schedulify - CPU Scheduling algorithm's visualizer",
@@ -23,6 +41,14 @@ const cards = [
     ],
     img: "/Projects/Schedulify.png",
     bg: "bg-[#0E2744]",
+    tech: [
+      { Icon: FaReact, name: "React", bg: "#61DBFB" },
+      { Icon: SiTailwindcss, name: "Tailwind", bg: "#38BDF8" },
+      { Icon: SiExpress, name: "ExpressJS", bg: "#000000" },
+      { Icon: SiTypescript, name: "TypeScript", bg: "#3178C6" },
+    ],
+    link: "https://schedulify-three.vercel.app/",
+    git: "https://github.com/AdityaRaghav0112/Schedulify",
   },
   {
     title: "Deploy - browser based 3D game",
@@ -32,6 +58,13 @@ const cards = [
     ],
     img: "/Projects/Deploy.png",
     bg: "bg-yellow-500",
+    tech: [
+      { Icon: RiNextjsFill, name: "Next.js", bg: "#000000" },
+      { Icon: TbBrandThreejs, name: "Three.js", bg: "#111111" },
+      { Icon: FaReact, name: "React", bg: "#61DBFB" },
+      { Icon: SiTypescript, name: "TypeScript", bg: "#3178C6" },
+    ],
+    git: "https://github.com/AdityaRaghav0112/Deploy",
   },
 ];
 
@@ -113,9 +146,36 @@ const StackedCards = () => {
 
               <div className="h-[60%] p-4 flex flex-col justify-between">
                 <div>
-                  <h2 className="font-anton text-xl leading-tight">
-                    {card.title}
-                  </h2>
+                  <div className="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-start">
+                    <h2 className="font-anton text-xl leading-tight">
+                      {card.title}
+                    </h2>
+                    <div className="flex gap-2 sm:mt-1.5">
+                      {card.link && (
+                        <button
+                          onClick={() => window.open(card.link)}
+                          className="p-2 sm:p-2.5 rounded-full bg-white/10 active:scale-95  hover:scale-110 transition-transform duration-150 flex items-center  px-3 gap-1"
+                          aria-label="Live Demo"
+                        >
+                          <ExternalLink
+                            className="text-white hover:text-gray-300 transition-colors  duration-200 w-4 h-4 sm:w-5 sm:h-5 "/>
+                          <p className="font-semibold text-sm">Live Demo</p>
+                        </button>
+                      )}
+
+                      {card.git && (
+                        <button
+                          onClick={() => window.open(card.git)}
+                          className="p-2 sm:p-2.5 rounded-full bg-white/10 active:scale-95  hover:scale-110 transition-transform duration-150 flex items-center gap-1 px-3"
+                          aria-label="GitHub Repository"
+                        >
+                          <Github
+                            className="text-white hover:text-gray-300 transition-colors duration-200 w-4 h-4 sm:w-5 sm:h-5"/>
+                          <p className="font-semibold text-sm">GitHub</p>
+                        </button>
+                      )}
+                    </div>
+                  </div>
 
                   <ul className="list-disc pl-4 mt-3 text-sm text-gray-300 space-y-1">
                     {card.desc.map((item, idx) => (
@@ -124,7 +184,31 @@ const StackedCards = () => {
                   </ul>
                 </div>
 
-                <p className="font-anton text-lg">Tech Stack</p>
+                <div>
+                  <p className="font-anton text-lg">Tech Stack</p>
+
+                  <div className="flex items-center gap-3 mt-2">
+                    {card.tech.slice(0, 4).map((techItem, idx) => {
+                      const Icon = techItem.Icon;
+                      if (!Icon) return null;
+                      return (
+                        <span
+                          key={idx}
+                          title={techItem.name}
+                          role="img"
+                          aria-label={techItem.name}
+                          className="inline-flex items-center justify-center rounded-full p-2 transition-transform duration-200 ease-out hover:scale-110 ring-1 ring-white/10"
+                          style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
+                        >
+                          <Icon
+                            style={{ color: techItem.bg }}
+                            className="text-[18px]"
+                          />
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -142,11 +226,8 @@ const StackedCards = () => {
       {/* ================= DESKTOP STACKED CARDS ================= */}
       <div className="hidden md:flex h-screen items-center justify-center px-2">
         <div
-          className="relative w-[95%] sm:w-[92%] md:w-[90%] lg:w-[85%]
-                     max-w-[1400px]
-                     h-[80%]
-                     rounded-3xl overflow-hidden"
-        >
+          className="relative w-[95%] sm:w-[92%] md:w-[90%] lg:w-[85%] max-w-350 h-[80%]
+                     rounded-3xl overflow-hidden">
           {cards.map((card, i) => (
             <div
               key={i}
@@ -157,13 +238,29 @@ const StackedCards = () => {
               <div className="h-full w-full flex text-white overflow-hidden">
                 {/* TEXT */}
                 <div
-                  className="w-[55%] p-8 flex flex-col justify-between
-                             border-r-4"
-                >
+                  className="w-[55%] p-8 flex flex-col justify-between border-r-4">
                   <div>
-                    <h2 className="font-anton text-4xl leading-tight">
-                      {card.title}
-                    </h2>
+                    <div className="flex justify-between items-start">
+                      <h2 className="font-anton text-4xl leading-tight">
+                        {card.title}
+                      </h2>
+                      <div className="flex gap-2 mt-1.5">
+                        {card.link ? (
+                          <button className="p-2 rounded-full bg-white/10 hover:scale-110 duration-150">
+                            <ExternalLink
+                              onClick={() => window.open(card.link)}
+                              className="text-white hover:text-gray-300 transition-colors duration-200 ease-out cursor-pointer"
+                            />
+                          </button>
+                        ) : null}
+                        <button
+                          onClick={() => window.open(card.git)}
+                          className="p-2 rounded-full bg-white/10 hover:scale-110 duration-150"
+                        >
+                          <Github className="text-white hover:text-gray-300 transition-colors duration-200 ease-out cursor-pointer" />
+                        </button>
+                      </div>
+                    </div>
 
                     <ul className="list-disc pl-5 mt-4 text-lg text-gray-300 space-y-2">
                       {card.desc.map((item, idx) => (
@@ -172,7 +269,33 @@ const StackedCards = () => {
                     </ul>
                   </div>
 
-                  <p className="font-anton text-3xl">Tech Stack</p>
+                  <div className="flex items-center gap-4">
+                    <p className="font-anton text-3xl">Tech Stack - </p>
+
+                    <div className="flex items-center gap-3">
+                      {card.tech.slice(0, 4).map((techItem, idx) => {
+                        const Icon = techItem.Icon;
+                        if (!Icon) return null;
+                        return (
+                          <span
+                            key={idx}
+                            title={techItem.name}
+                            role="img"
+                            aria-label={techItem.name}
+                            className="inline-flex items-center justify-center rounded-full p-3 transition-transform duration-200 ease-out hover:scale-105 ring-1 ring-white/10"
+                            style={{
+                              backgroundColor: "rgba(255,255,255,0.06)",
+                            }}
+                          >
+                            <Icon
+                              style={{ color: techItem.bg }}
+                              className="text-[22px]"
+                            />
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
 
                 {/* IMAGE */}

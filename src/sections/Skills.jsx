@@ -47,21 +47,8 @@ const Skills = () => {
         <div
           key={item.id}
           style={{ backgroundColor: item.color }}
-          className="
-            w-28 h-32
-            sm:w-32 sm:h-36
-            md:w-36 md:h-40
-            rounded-xl
-            border-2 sm:border-3 border-black
-            flex flex-col
-            items-center
-            justify-around
-            text-white
-            hover:scale-105
-            transition-transform
-            p-2
-          "
-        >
+          className="w-28 h-32 sm:w-32 sm:h-36 md:w-36 md:h-40 rounded-xl border-2 sm:border-3 border-black flex flex-col items-center justify-around text-white hover:scale-105
+            transition-transform p-2">
           <div className="[&>svg]:w-12 [&>svg]:h-12 sm:[&>svg]:w-16 sm:[&>svg]:h-16 md:[&>svg]:w-20 md:[&>svg]:h-20">
             {item.icon}
           </div>
@@ -82,10 +69,10 @@ const Skills = () => {
         My Arsenal
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-[1400px] auto-rows-fr">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-350 auto-rows-fr">
         {/* backend */}
         <div
-          className="md:col-span-2 rounded-xl p-4 sm:p-6 min-h-[300px]"
+          className="md:col-span-2 rounded-xl p-4 sm:p-6 min-h-75"
           style={{
             backgroundImage: "url(/skill/backend.png)",
             backgroundSize: "cover",
@@ -100,7 +87,7 @@ const Skills = () => {
 
         {/* BACKEND */}
         <div
-          className="md:row-span-2 rounded-xl p-4 sm:p-6 bg-[#222222] min-h-[300px]"
+          className="md:row-span-2 rounded-xl p-4 sm:p-6 bg-[#222222] min-h-75"
           style={{
             backgroundImage: "url(/skill/frontend.png)",
             backgroundSize: "cover",
@@ -115,7 +102,7 @@ const Skills = () => {
 
         {/* DATABASES */}
         <div
-          className="rounded-xl p-4 sm:p-6 min-h-[300px]"
+          className="rounded-xl p-4 sm:p-6 min-h-75"
           style={{
             backgroundImage: "url(/skill/database.png)",
             backgroundSize: "cover",
@@ -130,7 +117,7 @@ const Skills = () => {
 
         {/* TOOLS */}
         <div
-          className="rounded-xl p-4 sm:p-6 min-h-[300px]"
+          className="rounded-xl p-4 sm:p-6 min-h-75"
           style={{
             backgroundImage: "url(/skill/tools.png)",
             backgroundSize: "cover",
