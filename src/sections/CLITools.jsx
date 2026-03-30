@@ -1,5 +1,5 @@
 import React from "react";
-import { Github, Terminal } from "lucide-react";
+import { Github, Terminal, Zap } from "lucide-react";
 
 const tools = [
   {
@@ -11,6 +11,9 @@ const tools = [
     install: "pip install aider-chat",
     bg: "bg-[#1a1a2e]",
     accent: "#7c3aed",
+    simplest: true,
+    whySimplest:
+      "One pip install, set your API key as an env var, run aider in any git repo — no Docker, no IDE extension, no web UI needed.",
   },
   {
     name: "Cline",
@@ -56,8 +59,20 @@ const tools = [
 
 const ToolCard = ({ tool }) => (
   <div
-    className={`${tool.bg} rounded-2xl p-6 flex flex-col gap-4 text-white border border-white/10 hover:border-white/30 transition-all duration-300`}
+    className={`${tool.bg} rounded-2xl p-6 flex flex-col gap-4 text-white border transition-all duration-300 ${
+      tool.simplest
+        ? "border-[#7c3aed] ring-2 ring-[#7c3aed]/40"
+        : "border-white/10 hover:border-white/30"
+    }`}
   >
+    {/* "Simplest to start" badge */}
+    {tool.simplest && (
+      <div className="flex items-center gap-1.5 self-start bg-[#7c3aed]/20 border border-[#7c3aed]/50 text-[#c4b5fd] text-xs font-semibold px-3 py-1 rounded-full">
+        <Zap size={12} fill="#c4b5fd" />
+        Simplest to start
+      </div>
+    )}
+
     {/* Header */}
     <div className="flex items-start justify-between gap-3">
       <div className="flex items-center gap-3">
@@ -91,6 +106,16 @@ const ToolCard = ({ tool }) => (
       <span style={{ color: tool.accent }}>$</span>
       {tool.install}
     </div>
+
+    {/* Why it's the simplest */}
+    {tool.whySimplest && (
+      <div className="bg-[#7c3aed]/10 border border-[#7c3aed]/30 rounded-lg px-4 py-3 text-xs text-[#c4b5fd] leading-relaxed">
+        <span className="font-semibold uppercase tracking-wide text-[#a78bfa] block mb-1">
+          Why it's the simplest
+        </span>
+        {tool.whySimplest}
+      </div>
+    )}
 
     {/* API Providers */}
     <div>
